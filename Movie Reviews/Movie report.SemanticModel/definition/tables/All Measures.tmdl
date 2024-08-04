@@ -1,0 +1,25 @@
+table 'All Measures'
+	lineageTag: f2a931e1-0f0d-4de7-819e-6efcc26cdcbd
+
+	measure 'Average difference %' = AVERAGE('Gridserve KNN Predictions'[Percentage Difference])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: cd440040-043a-4be9-8614-6971ff887bc8
+
+	measure 'Average Difference' = AVERAGE('Gridserve KNN Predictions'[Difference])
+		formatString: 0.00
+		lineageTag: 0666f950-70dd-4881-9f4e-63e15b1e18f7
+
+	partition 'All Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
