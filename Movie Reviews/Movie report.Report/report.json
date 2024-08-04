@@ -1,0 +1,69 @@
+{
+  "config": "{\"version\":\"5.56\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU06\",\"version\":\"5.56\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU06",
+            "path": "BaseThemes/CY24SU06.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "346659bde339d4d16c3f",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"09087f253be6481477cf\",\"layouts\":[{\"id\":0,\"position\":{\"x\":486.6787658802178,\"y\":166.09800362976407,\"z\":1,\"width\":745.6987295825771,\"height\":521.524500907441,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"scatterChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Gridserve KNN Predictions.Predicted\"}],\"X\":[{\"queryRef\":\"Gridserve KNN Predictions.Actual\",\"active\":true}],\"Series\":[{\"queryRef\":\"Gridserve KNN Predictions.Difference Group\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"Gridserve KNN Predictions\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Predicted\"},\"Name\":\"Gridserve KNN Predictions.Predicted\",\"NativeReferenceName\":\"Predicted\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Actual\"},\"Name\":\"Gridserve KNN Predictions.Actual\",\"NativeReferenceName\":\"Actual\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Difference Group\"},\"Name\":\"Gridserve KNN Predictions.Difference Group\",\"NativeReferenceName\":\"Difference Group\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Actual\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{}}}",
+          "filters": "[]",
+          "height": 521.52,
+          "width": 745.70,
+          "x": 486.68,
+          "y": 166.10,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"9b1184f7feb37145fc84\",\"layouts\":[{\"id\":0,\"position\":{\"x\":717.8221415607985,\"y\":27.876588021778584,\"z\":3,\"width\":231.14337568058076,\"height\":106.86025408348458,\"tabOrder\":3}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"All Measures.Average deviation\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"All Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Average difference %\"},\"Name\":\"All Measures.Average deviation\",\"NativeReferenceName\":\"Average difference %\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Average difference %\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"value\":[{\"properties\":{\"horizontalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"34D\"}}}},\"selector\":{\"id\":\"default\"}}]}}}",
+          "filters": "[]",
+          "height": 106.86,
+          "width": 231.14,
+          "x": 717.82,
+          "y": 27.88,
+          "z": 3.00
+        },
+        {
+          "config": "{\"name\":\"c521156290a68ed5f463\",\"layouts\":[{\"id\":0,\"position\":{\"x\":33.68421052631579,\"y\":166.09800362976407,\"z\":0,\"width\":418.14882032667873,\"height\":521.524500907441,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Gridserve KNN Predictions.Index\"},{\"queryRef\":\"Gridserve KNN Predictions.Predicted\"},{\"queryRef\":\"Gridserve KNN Predictions.Actual\"},{\"queryRef\":\"Gridserve KNN Predictions.Difference\"},{\"queryRef\":\"Sum(Gridserve KNN Predictions.Percentage Difference)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"Gridserve KNN Predictions\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Index\"},\"Name\":\"Gridserve KNN Predictions.Index\",\"NativeReferenceName\":\"Index\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Predicted\"},\"Name\":\"Gridserve KNN Predictions.Predicted\",\"NativeReferenceName\":\"Predicted\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Actual\"},\"Name\":\"Gridserve KNN Predictions.Actual\",\"NativeReferenceName\":\"Actual\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Difference\"},\"Name\":\"Gridserve KNN Predictions.Difference\",\"NativeReferenceName\":\"Difference1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Percentage Difference\"},\"Name\":\"Sum(Gridserve KNN Predictions.Percentage Difference)\",\"NativeReferenceName\":\"Percentage Difference\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"75.1161557083428D\"}}}},\"selector\":{\"metadata\":\"Sum(Gridserve KNN Predictions.Percentage Difference)\"}}]}}}",
+          "filters": "[]",
+          "height": 521.52,
+          "width": 418.15,
+          "x": 33.68,
+          "y": 166.10,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"f8754e9375afb81f5697\",\"layouts\":[{\"id\":0,\"position\":{\"x\":486.6787658802178,\"y\":27.876588021778584,\"z\":4,\"width\":231.14337568058076,\"height\":106.86025408348458,\"tabOrder\":4}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"All Measures.Average Difference\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"All Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Average Difference\"},\"Name\":\"All Measures.Average Difference\",\"NativeReferenceName\":\"Average Difference\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Average Difference\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"value\":[{\"properties\":{\"horizontalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"34D\"}}}},\"selector\":{\"id\":\"default\"}}]}}}",
+          "filters": "[]",
+          "height": 106.86,
+          "width": 231.14,
+          "x": 486.68,
+          "y": 27.88,
+          "z": 4.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

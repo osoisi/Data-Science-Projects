@@ -1,0 +1,39 @@
+table Movies
+	lineageTag: e326fada-5e4a-4895-a0c1-ae1b89996ed0
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 6b9e7490-50ff-45cc-8172-91faaa59afcc
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column movieId
+		dataType: string
+		lineageTag: 186c87cb-eafd-42c5-a4d6-4d7a7f11dfe0
+		summarizeBy: none
+		sourceColumn: movieId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Movies = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("LAPTOP-4K423J2I\MSSQLSERVER01"),
+				    rotten_tomato_movie_reivews = Source{[Name="rotten_tomato_movie_reivews"]}[Data],
+				    dbo_newMergedMovieData = rotten_tomato_movie_reivews{[Schema="dbo",Item="newMergedMovieData"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(dbo_newMergedMovieData,{{"isFresh", Int64.Type}, {"isRotten", Int64.Type}, {"isTopCritic", Int64.Type}, {"isVerified", Int64.Type}, {"isSuperReviewer", Int64.Type}, {"hasSpoilers", Int64.Type}, {"hasProfanity", Int64.Type}, {"movieRank", Int64.Type}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"movieId"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+				    #"Added Index" = Table.AddIndexColumn(#"Removed Duplicates", "Index", 1, 1, Int64.Type),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Added Index",{"Index", "movieId"})
+				in
+				    #"Reordered Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

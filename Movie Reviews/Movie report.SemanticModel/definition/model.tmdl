@@ -1,0 +1,23 @@
+model Model
+	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.131.1203.0 (24.07)
+
+annotation PBI_QueryOrder = ["newMergedMovieData","Movie Reviews","Movies","Gridserve KNN Predictions","All Measures"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'Movie Reviews'
+ref table Movies
+ref table 'Gridserve KNN Predictions'
+ref table 'All Measures'
+
+ref cultureInfo en-GB
+

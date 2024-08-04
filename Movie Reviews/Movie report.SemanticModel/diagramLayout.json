@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 578.38305001469371,
+            "y": -10
+          },
+          "nodeIndex": "Movie Reviews",
+          "nodeLineageTag": "14c77c8a-a7cb-479d-9f9a-3287b7901b26",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 294.20156119318511,
+            "y": 108.84469795984606
+          },
+          "nodeIndex": "Movies",
+          "nodeLineageTag": "e326fada-5e4a-4895-a0c1-ae1b89996ed0",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568.18148882150854,
+            "y": 74
+          },
+          "nodeIndex": "Gridserve KNN Predictions",
+          "nodeLineageTag": "ad7bd9d2-41d3-45df-9671-8d3221790949",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568.18148882150854,
+            "y": 98
+          },
+          "nodeIndex": "All Measures",
+          "nodeLineageTag": "f2a931e1-0f0d-4de7-819e-6efcc26cdcbd",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

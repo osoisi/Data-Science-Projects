@@ -1,0 +1,10 @@
+relationship AutoDetected_467aa940-e70f-462b-8efe-3f52e73b29f9
+	fromColumn: 'Movie Reviews'.movieId
+	toColumn: Movies.movieId
+
+relationship AutoDetected_fd8a6564-7992-4f45-acf8-0bca5dbaec65
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Movies.Index
+	toColumn: 'Gridserve KNN Predictions'.Index
+
