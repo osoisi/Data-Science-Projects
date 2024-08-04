@@ -80,7 +80,7 @@ table 'Gridserve KNN Predictions'
 				    #"Added Custom1" = Table.AddColumn(#"Removed Columns", "Custom", each ([Actual]-[Predicted])/[Actual]),
 				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom1",{{"Custom", Percentage.Type}}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"Custom", "Percentage Difference"}}),
-				    #"Added Conditional Column" = Table.AddColumn(#"Renamed Columns", "Difference Group", each if [Difference] <= -5 then "Significantly Less" else if [Difference] <= -2 then "Moderately Less" else if [Difference] = 0 then "In-Line" else if [Difference] <= 2 then "Moderately Less" else if [Difference] > 2 then "Significantly More" else null),
+				    #"Added Conditional Column" = Table.AddColumn(#"Renamed Columns", "Difference Group", each if [Difference] <= -5 then "Significantly Less" else if [Difference] <= -2 then "Moderately Less" else if [Difference] = 0 then "In-Line" else if [Difference] <= 2 then "Moderately More" else if [Difference] > 2 then "Significantly More" else null),
 				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Conditional Column",{{"Difference", type number}})
 				in
 				    #"Changed Type2"
