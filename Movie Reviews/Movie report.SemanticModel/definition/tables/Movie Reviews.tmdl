@@ -1,0 +1,137 @@
+table 'Movie Reviews'
+	lineageTag: 14c77c8a-a7cb-479d-9f9a-3287b7901b26
+
+	column movieId
+		dataType: string
+		lineageTag: f06f80f0-2773-4a38-8587-b05ce0dd2f04
+		summarizeBy: none
+		sourceColumn: movieId
+
+		annotation SummarizationSetBy = Automatic
+
+	column isFresh
+		dataType: int64
+		formatString: 0
+		lineageTag: 75c1b3e9-0fbc-48f5-a847-a5202fda02ff
+		summarizeBy: sum
+		sourceColumn: isFresh
+
+		annotation SummarizationSetBy = Automatic
+
+	column isRotten
+		dataType: int64
+		formatString: 0
+		lineageTag: a66269ec-f7df-471f-aa92-f3f6478a2fec
+		summarizeBy: sum
+		sourceColumn: isRotten
+
+		annotation SummarizationSetBy = Automatic
+
+	column isTopCritic
+		dataType: int64
+		formatString: 0
+		lineageTag: 889fb3c2-2a8f-4f16-8d50-62473570cde8
+		summarizeBy: sum
+		sourceColumn: isTopCritic
+
+		annotation SummarizationSetBy = Automatic
+
+	column scoreSentiment
+		dataType: int64
+		formatString: 0
+		lineageTag: 994392a7-ac5f-499e-a4be-41fe539151da
+		summarizeBy: sum
+		sourceColumn: scoreSentiment
+
+		annotation SummarizationSetBy = Automatic
+
+	column rating
+		dataType: double
+		lineageTag: 4f57ad92-cb5c-4404-9341-ca63b1b2ec2a
+		summarizeBy: sum
+		sourceColumn: rating
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column isVerified
+		dataType: int64
+		formatString: 0
+		lineageTag: fecd5dba-0913-49f4-95a7-359cb5a5a26b
+		summarizeBy: sum
+		sourceColumn: isVerified
+
+		annotation SummarizationSetBy = Automatic
+
+	column isSuperReviewer
+		dataType: int64
+		formatString: 0
+		lineageTag: 1d96622c-cc4e-44fa-95b1-c75825c27e13
+		summarizeBy: sum
+		sourceColumn: isSuperReviewer
+
+		annotation SummarizationSetBy = Automatic
+
+	column hasSpoilers
+		dataType: int64
+		formatString: 0
+		lineageTag: 57b37382-1e3f-4911-ad6e-303db9054426
+		summarizeBy: sum
+		sourceColumn: hasSpoilers
+
+		annotation SummarizationSetBy = Automatic
+
+	column hasProfanity
+		dataType: int64
+		formatString: 0
+		lineageTag: 1332b7fd-8642-460c-885c-f4df7eb0134f
+		summarizeBy: sum
+		sourceColumn: hasProfanity
+
+		annotation SummarizationSetBy = Automatic
+
+	column movieRank
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cb3ac41-a375-49b9-b832-2a00e500cda3
+		summarizeBy: sum
+		sourceColumn: movieRank
+
+		annotation SummarizationSetBy = Automatic
+
+	column critic_score
+		dataType: double
+		lineageTag: 5465048c-3f26-414c-a53a-b564b57338ca
+		summarizeBy: sum
+		sourceColumn: critic_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column audience_score
+		dataType: double
+		lineageTag: c4f14d85-3053-42d0-9c38-b0c4cf32c102
+		summarizeBy: sum
+		sourceColumn: audience_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Movie Reviews' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("LAPTOP-4K423J2I\MSSQLSERVER01"),
+				    rotten_tomato_movie_reivews = Source{[Name="rotten_tomato_movie_reivews"]}[Data],
+				    dbo_newMergedMovieData = rotten_tomato_movie_reivews{[Schema="dbo",Item="newMergedMovieData"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(dbo_newMergedMovieData,{{"isFresh", Int64.Type}, {"isRotten", Int64.Type}, {"isTopCritic", Int64.Type}, {"isVerified", Int64.Type}, {"isSuperReviewer", Int64.Type}, {"hasSpoilers", Int64.Type}, {"hasProfanity", Int64.Type}, {"movieRank", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,91 @@
+table 'Gridserve KNN Predictions'
+	lineageTag: ad7bd9d2-41d3-45df-9671-8d3221790949
+
+	column Actual
+		dataType: int64
+		formatString: 0
+		lineageTag: 74d08807-2b82-402e-b340-bc1c98d63bec
+		summarizeBy: none
+		sourceColumn: Actual
+
+		annotation SummarizationSetBy = User
+
+	column Predicted
+		dataType: int64
+		formatString: 0
+		lineageTag: a6d2145e-3476-4cbf-9a5e-9f8b1a11fd6a
+		summarizeBy: none
+		sourceColumn: Predicted
+
+		annotation SummarizationSetBy = User
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: b7786e10-0fcf-4c19-837a-ded3b3f36937
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3691697b-697a-476e-b17a-c78cde44505c
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Difference
+		dataType: double
+		lineageTag: d3365ac3-6733-49dc-9edf-0010fac322b5
+		summarizeBy: sum
+		sourceColumn: Difference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Percentage Difference'
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e3376ea1-cd1e-44de-b125-a30b77c984b7
+		summarizeBy: sum
+		sourceColumn: Percentage Difference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Difference Group'
+		dataType: string
+		lineageTag: fb106c12-c905-425e-af40-786615650f52
+		summarizeBy: none
+		sourceColumn: Difference Group
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Gridserve KNN Predictions' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\aa1\Desktop\Learn\Data Science Projects\Data-Science-Projects\Movie Reviews\2024_8_results_gridserve_knn.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"", Int64.Type}, {"Actual", Int64.Type}, {"Predicted", Int64.Type}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type",{{"", "ID"}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Renamed Columns1", "Index", 1, 1, Int64.Type),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Added Index",{"Index", "ID", "Actual", "Predicted"}),
+				    #"Added Custom" = Table.AddColumn(#"Reordered Columns", "Difference", each [Actual]-[Predicted]),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Added Custom", "Difference", "Difference - Copy"),
+				    #"Removed Columns" = Table.RemoveColumns(#"Duplicated Column",{"Difference - Copy"}),
+				    #"Added Custom1" = Table.AddColumn(#"Removed Columns", "Custom", each ([Actual]-[Predicted])/[Actual]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom1",{{"Custom", Percentage.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"Custom", "Percentage Difference"}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Renamed Columns", "Difference Group", each if [Difference] <= -5 then "Significantly Less" else if [Difference] <= -2 then "Moderately Less" else if [Difference] = 0 then "In-Line" else if [Difference] <= 2 then "Moderately Less" else if [Difference] > 2 then "Significantly More" else null),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Conditional Column",{{"Difference", type number}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

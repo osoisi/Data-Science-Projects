@@ -1,0 +1,13 @@
+expression newMergedMovieData =
+		let
+		    Source = Sql.Databases("LAPTOP-4K423J2I\MSSQLSERVER01"),
+		    rotten_tomato_movie_reivews = Source{[Name="rotten_tomato_movie_reivews"]}[Data],
+		    dbo_newMergedMovieData = rotten_tomato_movie_reivews{[Schema="dbo",Item="newMergedMovieData"]}[Data]
+		in
+		    dbo_newMergedMovieData
+	lineageTag: 779e049b-6464-4fa7-b95f-95aeb3aa9375
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
