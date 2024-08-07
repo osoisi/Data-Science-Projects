@@ -21,19 +21,19 @@ table 'All Measures'
 		formatString: 0.00
 		lineageTag: 9de213da-52d7-4f7c-ab47-218260d73e7d
 
-	measure 'Values Between -2 & 0' = CALCULATE(COUNT('Gridserve KNN Predictions'[Difference Group]),'Gridserve KNN Predictions'[Difference Group]="Moderately Less")
+	measure 'Gap Between -2 & 0' = CALCULATE(COUNT('Gridserve KNN Predictions'[Difference Group]),'Gridserve KNN Predictions'[Difference Group]="Moderately Less")
 		formatString: 0
 		lineageTag: f5c6be1f-c014-4cf7-8e29-db1ace0b7641
 
-	measure 'Values < - 2' = CALCULATE(COUNT('Gridserve KNN Predictions'[Difference Group]),'Gridserve KNN Predictions'[Difference Group]="Significantly Less")
+	measure 'Gap < - 2' = CALCULATE(COUNT('Gridserve KNN Predictions'[Difference Group]),'Gridserve KNN Predictions'[Difference Group]="Significantly Less")
 		formatString: 0
 		lineageTag: e0f6c1ce-bbb7-437e-a58a-808b2d9d5e2c
 
-	measure 'Values Between 0 & 2' = CALCULATE(COUNT('Gridserve KNN Predictions'[Difference Group]),'Gridserve KNN Predictions'[Difference Group]="Moderately More")
+	measure 'Gap Between 0 & 2' = CALCULATE(COUNT('Gridserve KNN Predictions'[Difference Group]),'Gridserve KNN Predictions'[Difference Group]="Moderately More")
 		formatString: 0
 		lineageTag: e4651c8d-531b-42ba-80e4-f8bc3a67879f
 
-	measure 'Values > 2' = CALCULATE(COUNT('Gridserve KNN Predictions'[Difference Group]),'Gridserve KNN Predictions'[Difference Group]="Significantly More")
+	measure 'Gap > 2' = CALCULATE(COUNT('Gridserve KNN Predictions'[Difference Group]),'Gridserve KNN Predictions'[Difference Group]="Significantly More")
 		formatString: 0
 		lineageTag: 6c342407-fe5f-404d-80b4-63fee6e34afa
 
